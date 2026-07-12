@@ -5,6 +5,7 @@ This is a clean local agentic AI project focused only on:
 1. Documentation generation
 2. Coding and web development
 3. Web design and UI/UX planning
+4. Data Extraction
 
 It uses:
 
