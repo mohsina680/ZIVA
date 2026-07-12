@@ -1,4 +1,4 @@
-# Qwen3 Local Documentation, Coding, and Web Design Agent
+# Local Documentation, Coding, and Web Design and Data Extraction Agent
 
 This is a clean local agentic AI project focused only on:
 
