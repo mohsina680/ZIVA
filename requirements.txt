@@ -1,0 +1,39 @@
+# Core agent framework
+langgraph>=0.2.60
+langchain>=0.3.14
+langchain-core>=0.3.29
+langchain-community>=0.3.14
+langchain-openai>=0.2.14
+langchain-text-splitters>=0.3.4
+langchain-huggingface>=0.1.2
+
+# Local RAG
+faiss-cpu>=1.8.0.post1
+sentence-transformers>=3.3.1
+pypdf>=5.1.0
+beautifulsoup4>=4.12.3
+markdown>=3.7
+
+# CLI + config
+python-dotenv>=1.0.1
+typer>=0.15.1
+rich>=13.9.4
+pydantic>=2.10.4
+
+# Document extraction (MCP Document Extractor)
+pytesseract>=0.3.10
+pdf2image>=1.17.0
+Pillow>=10.0.0
+easyocr>=1.7.0
+surya-ocr>=0.4.0
+docling>=2.0.0
+
+# MCP (Model Context Protocol) for Claude Code integration
+mcp>=1.0.0
+
+# Utilities
+xxhash>=3.0.0
+rapidfuzz>=3.0.0
+
+# Testing
+pytest>=8.3.4

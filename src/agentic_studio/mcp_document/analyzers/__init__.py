@@ -1,0 +1,1 @@
+"""Document analyzers for type detection and quality estimation."""
