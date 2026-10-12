@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Iterable, List
+from typing import Iterable, List, Optional
 
 from langchain_core.documents import Document
 from langchain_community.document_loaders import TextLoader, PyPDFLoader, UnstructuredMarkdownLoader
@@ -49,8 +49,14 @@ def build_vector_db() -> int:
     if not docs:
         raise RuntimeError(f"No supported knowledge files found in {settings.knowledge_dir}")
 
-    splitter = RecursiveCharacterTextSplitter(chunk_size=900, chunk_overlap=160)
+    chunk_size = settings.rag_chunk_size
+    chunk_overlap = min(settings.rag_chunk_overlap, max(0, chunk_size - 1))
+    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     chunks = splitter.split_documents(docs)
+    total_chunks = len(chunks)
+    for i, chunk in enumerate(chunks, start=1):
+        chunk.metadata["chunk_id"] = i
+        chunk.metadata["chunk_total"] = total_chunks
 
     embeddings = HuggingFaceEmbeddings(model_name=settings.embedding_model)
     vectorstore = FAISS.from_documents(chunks, embeddings)
@@ -71,13 +77,31 @@ def load_vector_db() -> FAISS | None:
     )
 
 
-def retrieve_context(query: str, k: int = 5) -> str:
+def retrieve_context(query: str, k: Optional[int] = None, max_context_chars: Optional[int] = None) -> str:
+    settings = get_settings()
     vectorstore = load_vector_db()
     if vectorstore is None:
         return ""
-    docs = vectorstore.similarity_search(query, k=k)
+    limit_k = max(1, k or settings.rag_retrieval_k)
+    context_limit = max_context_chars or settings.rag_max_context_chars
+    docs = vectorstore.similarity_search(query, k=limit_k)
     blocks = []
+    used_chars = 0
     for i, doc in enumerate(docs, start=1):
+        if used_chars >= context_limit:
+            break
         source = doc.metadata.get("source", "unknown")
-        blocks.append(f"[Context {i} | Source: {source}]\n{doc.page_content}")
+        chunk_id = doc.metadata.get("chunk_id", "?")
+        chunk_total = doc.metadata.get("chunk_total", "?")
+        content = doc.page_content.strip()
+        header = f"[Context {i} | Source: {source} | Chunk {chunk_id}/{chunk_total}]"
+        available_chars = max(0, context_limit - used_chars - len(header) - 2)
+        if available_chars <= 0:
+            break
+        excerpt = content[:available_chars].strip()
+        if not excerpt:
+            continue
+        block = f"{header}\n{excerpt}"
+        blocks.append(block)
+        used_chars += len(block) + 2
     return "\n\n".join(blocks)

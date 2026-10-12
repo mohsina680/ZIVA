@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from langchain_core.messages import SystemMessage, HumanMessage
 from ..llm import get_chat_model
+from ..prompts import build_agent_user_message
 
 SYSTEM_PROMPT = """You are a senior web UI/UX designer and frontend design planner.
 Your job is to create professional web design outputs from the user's Markdown instruction.
@@ -32,6 +33,6 @@ def run_design_agent(runbook_text: str, rag_context: str) -> str:
     llm = get_chat_model(temperature=0.35)
     response = llm.invoke([
         SystemMessage(content=SYSTEM_PROMPT),
-        HumanMessage(content=f"RAG CONTEXT:\n{rag_context}\n\nMARKDOWN INSTRUCTION:\n{runbook_text}"),
+        HumanMessage(content=build_agent_user_message("MARKDOWN INSTRUCTION", runbook_text, rag_context)),
     ])
     return str(response.content)

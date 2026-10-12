@@ -10,6 +10,7 @@ from .config import get_settings, ensure_project_dirs
 from .rag import build_vector_db, retrieve_context
 from .graph import build_graph
 from .llm import get_chat_model
+from .prompts import build_agent_user_message
 
 app = typer.Typer(help="Local Qwen3 documentation, coding, and web-design agent")
 console = Console()
@@ -68,7 +69,7 @@ def chat(message: str) -> None:
     llm = get_chat_model(temperature=0.2)
     response = llm.invoke([
         SystemMessage(content="You are a local assistant focused only on documentation, coding, and web design."),
-        HumanMessage(content=f"RAG CONTEXT:\n{context}\n\nUSER MESSAGE:\n{message}"),
+        HumanMessage(content=build_agent_user_message("USER MESSAGE", message, context)),
     ])
     console.print(response.content)
 
