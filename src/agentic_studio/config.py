@@ -21,6 +21,10 @@ class Settings(BaseModel):
     task_scope: str = "documentation,coding,web_design"
     save_raw_model_output: bool = True
     extract_file_blocks: bool = True
+    rag_chunk_size: int = 900
+    rag_chunk_overlap: int = 160
+    rag_retrieval_k: int = 5
+    rag_max_context_chars: int = 5000
 
 
 def get_settings() -> Settings:
@@ -38,6 +42,10 @@ def get_settings() -> Settings:
         task_scope=os.getenv("TASK_SCOPE", "documentation,coding,web_design"),
         save_raw_model_output=os.getenv("SAVE_RAW_MODEL_OUTPUT", "true").lower() == "true",
         extract_file_blocks=os.getenv("EXTRACT_FILE_BLOCKS", "true").lower() == "true",
+        rag_chunk_size=max(100, int(os.getenv("RAG_CHUNK_SIZE", "900"))),
+        rag_chunk_overlap=max(0, int(os.getenv("RAG_CHUNK_OVERLAP", "160"))),
+        rag_retrieval_k=max(1, int(os.getenv("RAG_RETRIEVAL_K", "5"))),
+        rag_max_context_chars=max(500, int(os.getenv("RAG_MAX_CONTEXT_CHARS", "5000"))),
     )
 
 

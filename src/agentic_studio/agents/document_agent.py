@@ -3,6 +3,7 @@ from __future__ import annotations
 from langchain_core.messages import SystemMessage, HumanMessage
 from ..llm import get_chat_model
 from ..mcp_document import extract_document, DocumentExtractor
+from ..prompts import build_agent_user_message
 
 SYSTEM_PROMPT = """You are a document extraction specialist for ZIVA Agent.
 Extract text from documents using intelligent OCR with cascading fallback.
@@ -32,7 +33,7 @@ def run_document_agent(runbook_text: str, rag_context: str = "") -> str:
 
     response = llm.invoke([
         SystemMessage(content=SYSTEM_PROMPT),
-        HumanMessage(content=f"RAG CONTEXT:\n{rag_context}\n\nTASK:\n{runbook_text}"),
+        HumanMessage(content=build_agent_user_message("TASK", runbook_text, rag_context)),
     ])
 
     return str(response.content)
