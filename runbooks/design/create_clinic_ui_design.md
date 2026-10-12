@@ -1,15 +1,18 @@
-# Task: Create Full Clinic App UI Design
+# Task: Create Full Agentic Platform UI Design
 
 ## Goal
-Create a professional UI/UX design plan for a full clinic web app.
+Create a professional UI/UX design plan for the full ZIVA agentic platform app.
 
 ## Pages
 - Authentication (Login, Signup, Forgot Password)
 - Dashboard
-- Patients (CRUD flow)
-- Doctors (CRUD flow)
-- Appointments (CRUD flow)
-- Settings (Profile, Notifications, Security, Preferences)
+- Documentation workflow
+- Coding workflow
+- Web Design workflow
+- Document Extraction workflow
+- Runbook Manager
+- Knowledge Base / RAG Ingestion
+- Settings (Model, Retrieval, Output)
 
 ## Output Required
 - Color palette
@@ -21,4 +24,4 @@ Create a professional UI/UX design plan for a full clinic web app.
 - Responsive behavior guidelines for mobile/tablet/desktop
 
 ## Style
-Clean, modern medical look with white background and blue/green accent colors.
+Clean, modern technical product look with strong clarity and workflow focus.

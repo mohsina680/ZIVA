@@ -1,13 +1,16 @@
-# Task: Create Full Healthcare Web App UI
+# Task: Create Full Agentic Platform Web App UI
 
 ## Goal
-Create a full, app-based, responsive healthcare web UI (not only a landing page).
+Create a full, interactive, app-based UI for the ZIVA agentic platform.
 
 ## Requirements
 - Authentication UI (login, signup, forgot password)
-- App dashboard with cards, charts placeholders, recent activity, and quick actions
-- CRUD-ready management pages (patients, doctors, appointments) with list, filters, form, and detail views
-- Settings pages (profile, notifications, security, preferences)
+- Main dashboard for agent runs, status cards, and activity timeline
+- Task pages for Documentation, Coding, Web Design, and Document Extraction workflows
+- Runbook manager (create, edit, select, and execute runbooks)
+- Results pages with generated output preview, review output, and saved files
+- Knowledge base page to ingest and manage RAG docs
+- Settings pages (model endpoint, model name, retrieval settings, output preferences)
 - Reusable layout system (header, sidebar, breadcrumbs, page shell)
 - Reusable UI components (buttons, inputs, modals, tables, badges, alerts, tabs)
 - Responsive behavior for desktop, tablet, and mobile
@@ -20,8 +23,8 @@ Create these files:
 - script.js
 
 Also provide:
-- a Node.js + TypeScript variant of the same full app UI structure
+- a Node.js + TypeScript variant of the same app UI structure
 - a Python Streamlit variant with matching visual style and page flow
 
 ## Style
-Professional, medical, clean, modern, production-ready.
+Professional, modern SaaS style, clean, production-ready.
