@@ -199,6 +199,35 @@ class TestExtractionResult:
         assert extract_document is not None
         assert batch_extract is not None
 
+    def test_mcp_package_exports_extraction_result(self):
+        """Test that mcp_document exports ExtractionResult."""
+        from agentic_studio.mcp_document import ExtractionResult as ExportedResult
+        assert ExportedResult is ExtractionResult
+
+
+class TestToolsIntegration:
+    """Test direct tool function wiring."""
+
+    def test_extract_document_uses_local_extractor_module(self, monkeypatch):
+        from agentic_studio.mcp_document import tools
+
+        class _FakeExtractor:
+            def extract(self, **kwargs):
+                return ExtractionResult(
+                    text="ok",
+                    confidence=0.9,
+                    extractor_name="fake",
+                    page_count=1,
+                )
+
+        monkeypatch.setattr(
+            "agentic_studio.mcp_document.extractor.get_document_extractor",
+            lambda: _FakeExtractor()
+        )
+        result = tools.extract_document("/tmp/file.pdf")
+        assert result["successful"] is True
+        assert result["extractor_used"] == "fake"
+
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

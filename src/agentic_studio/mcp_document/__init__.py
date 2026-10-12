@@ -11,7 +11,7 @@ Extractors:
 """
 
 from .extractor import DocumentExtractor, extract_document, get_document_extractor
-from .merger import ExtractionResult
+from .extractors.base import ExtractionResult
 
 __all__ = ["DocumentExtractor", "ExtractionResult", "extract_document", "get_document_extractor"]
 __version__ = "0.1.0"
