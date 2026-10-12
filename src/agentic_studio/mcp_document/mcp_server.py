@@ -158,7 +158,7 @@ class DocumentExtractorMCPServer:
 
     async def _handle_tool(self, name: str, arguments: dict) -> dict:
         """Handle a tool call."""
-        from ..extractor import DocumentExtractor, get_document_extractor
+        from .extractor import get_document_extractor
 
         extractor = get_document_extractor()
 

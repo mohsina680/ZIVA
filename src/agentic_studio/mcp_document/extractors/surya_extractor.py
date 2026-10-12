@@ -166,6 +166,7 @@ class SuryaExtractor(BaseExtractor):
     def _extract_pdf(self, file_path: str, **kwargs) -> ExtractionResult:
         """Extract text from PDF using Surya OCR on each page."""
         from pdf2image import convert_from_path
+        import numpy as np
 
         ocr_func, _ = self._get_models()
         if ocr_func is None:

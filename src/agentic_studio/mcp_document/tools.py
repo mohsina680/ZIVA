@@ -60,7 +60,7 @@ if LANGCHAIN_AVAILABLE:
             min_confidence: float = 0.7
         ) -> str:
             """Run the tool synchronously."""
-            from ..extractor import get_document_extractor
+            from .extractor import get_document_extractor
 
             extractor = get_document_extractor()
             result = extractor.extract(
@@ -115,7 +115,7 @@ if LANGCHAIN_AVAILABLE:
             parallel: bool = False
         ) -> str:
             """Run the tool synchronously."""
-            from ..extractor import get_document_extractor
+            from .extractor import get_document_extractor
 
             extractor = get_document_extractor()
             results = extractor.extract_batch(
@@ -166,8 +166,8 @@ if LANGCHAIN_AVAILABLE:
 
         def _run(self, file_path: str) -> str:
             """Run the tool synchronously."""
-            from ..extractor import get_document_extractor
-            from ..analyzers.document_analyzer import DocumentAnalyzer
+            from .extractor import get_document_extractor
+            from .analyzers.document_analyzer import DocumentAnalyzer
 
             extractor = get_document_extractor()
             doc_info = extractor.analyze(file_path)
