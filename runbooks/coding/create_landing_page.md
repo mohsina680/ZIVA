@@ -1,15 +1,20 @@
-# Task: Create Healthcare Landing Page
+# Task: Create Full Agentic Platform Web App UI
 
 ## Goal
-Create a beautiful, clean, responsive landing page for a healthcare website.
+Create a full, interactive, app-based UI for the ZIVA agentic platform.
 
 ## Requirements
-- Hero section
-- Services section
-- Doctor consultation section
-- Appointment call-to-action
-- Footer
-- Responsive CSS
+- Authentication UI (login, signup, forgot password)
+- Main dashboard for agent runs, status cards, and activity timeline
+- Task pages for Documentation, Coding, Web Design, and Document Extraction workflows
+- Runbook manager (create, edit, select, and execute runbooks)
+- Results pages with generated output preview, review output, and saved files
+- Knowledge base page to ingest and manage RAG docs
+- Settings pages (model endpoint, model name, retrieval settings, output preferences)
+- Reusable layout system (header, sidebar, breadcrumbs, page shell)
+- Reusable UI components (buttons, inputs, modals, tables, badges, alerts, tabs)
+- Responsive behavior for desktop, tablet, and mobile
+- Basic client-side validation and form UX states
 
 ## Output Required
 Create these files:
@@ -18,8 +23,8 @@ Create these files:
 - script.js
 
 Also provide:
-- a Node.js + TypeScript variant of the same UI structure
-- a Python Streamlit variant with matching visual style
+- a Node.js + TypeScript variant of the same app UI structure
+- a Python Streamlit variant with matching visual style and page flow
 
 ## Style
-Professional, medical, clean, modern.
+Professional, modern SaaS style, clean, production-ready.

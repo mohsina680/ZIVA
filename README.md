@@ -98,6 +98,21 @@ python -m src.agentic_studio run runbooks/design/create_clinic_ui_design.md
 
 Outputs are saved in `workspace/`.
 
+## Run Interactive UI App
+
+Launch the full interactive app UI for the agentic platform:
+
+```bash
+PYTHONPATH=. streamlit run src/agentic_studio/ui_app.py
+```
+
+The app includes:
+- Run existing runbooks
+- Create and run tasks for documentation/coding/design/extraction
+- Rebuild RAG vector database
+- Chat with context retrieval
+- View system status and recent workspace outputs
+
 ## Test the Project Code
 
 ```bash
